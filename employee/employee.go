@@ -18,7 +18,7 @@ type Employee struct {
 	ID        primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
 	FirstName string             `json:"firstName"`
 	LastName  string             `json:"lastName"`
-	Position  string             `json:"Position"`
+	Position  string             `json:"position"`
 }
 
 var Ctx context.Context
