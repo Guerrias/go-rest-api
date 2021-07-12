@@ -15,18 +15,22 @@ This project is an API build with the programing language Golang and using Mongo
 ## Data Structure
 The data stored is a representation of employees' information. The structure is as follow:
 
-type Employee struct{<br>
-     "_id": automatically generated,<br>
-     "firstName": "example first name",<br>
-     "lastName": "example last name",<br>
-     "position": "example position"<br>
-}
+> type Employee struct{<br>
+>      "_id": automatically generated,<br>
+>      "firstName": "example first name",<br>
+>      "lastName": "example last name",<br>
+>      "position": "example position"<br>
+> }
 
 > The attribute "_id" is unmutable.
 
 ## Operability
-The API is running on port 8000.
-MongoDB is running on port 27017.
+To run the api:
+> * Open the folder go-rest-api in a terminal
+> * Use the commande "go build",
+> * Then the commande "./go-rest-api"<br>
+
+The API will be running on port 8000 and connect to MongoDB using port 27017.
 
 ### Routes
 * Get : "http://localhost:8000/api/employees?lastname=lastnameValue&firstname=firstnameValue&position=positionValue" => List all the employees in the database.
