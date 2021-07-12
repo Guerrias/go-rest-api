@@ -55,7 +55,7 @@ func GetEmployees(w http.ResponseWriter, r *http.Request) {
 	filter := bson.M{}
 
 	if params := r.URL.Query(); len(params) != 0 {
-
+		// create a query filter
 		query := []bson.M{}
 		for key, value := range params {
 			query = append(query, bson.M{
@@ -70,12 +70,14 @@ func GetEmployees(w http.ResponseWriter, r *http.Request) {
 		filter = bson.M{"$or": query}
 	}
 
+	// get all the employees satisfying the filter requirements
 	cursor, err := Collections.Find(Ctx, filter)
 	if err != nil {
 		printError(err, w)
 		return
 	}
 	defer cursor.Close(Ctx)
+	// placing all the employees returned by the Find method in a slice table
 	for cursor.Next(Ctx) {
 		var employee Employee
 		cursor.Decode(&employee)
@@ -123,10 +125,21 @@ func UpdateEmployee(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r) // getting params
 	id, _ := primitive.ObjectIDFromHex(params["id"])
 	filter := bson.M{"_id": id}
-	var employee Employee
+	var updateEmployee, oldEmployee Employee
 	var result Employee
-	json.NewDecoder(r.Body).Decode(&employee)
-	update := bson.M{"$set": employee}
+	json.NewDecoder(r.Body).Decode(&updateEmployee)
+
+	Collections.FindOne(Ctx, filter).Decode(&oldEmployee)
+	if updateEmployee.FirstName == "" {
+		updateEmployee.FirstName = oldEmployee.FirstName
+	}
+	if updateEmployee.LastName == "" {
+		updateEmployee.LastName = oldEmployee.LastName
+	}
+	if updateEmployee.Position == "" {
+		updateEmployee.Position = oldEmployee.Position
+	}
+	update := bson.M{"$set": updateEmployee}
 	err := Collections.FindOneAndUpdate(Ctx, filter, update).Decode(&result)
 	if err != nil {
 		printError(err, w)
