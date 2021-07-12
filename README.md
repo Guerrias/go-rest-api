@@ -36,6 +36,6 @@ MongoDB is running on port 27017.
 * Delete : "http://localhost:8000/api/employees/{id}" => Delete an entry in the database which ID matches the parameter
 
 #### Note
-The parameters for the end point to read all the employees are optional. When present, the result will be filtered based on the attributes passed in parameter. The filter algorithm is based on regex patterns rather than exact values.
+> The parameters for the end point to read all the employees are optional. When present, the result will be filtered based on the attributes passed in parameter. > The filter algorithm is based on regex patterns rather than exact values.
 
-For instance, "position=soft" might have the same result as "position=sof" 
+> For instance, "position=soft" might have the same result as "position=sof" 
