@@ -16,10 +16,10 @@ This project is an api build with the programing language Golang and using Mongo
 The data stored is a representation of employees' information. The structure is as follow:
 
 type Employee struct{<br>
-    "_id": automatically generated,<br>
-    "firstName": "example first name",<br>
-    "lastName": "example last name",<br>
-    "position": "example position"<br>
+     "_id": automatically generated,<br>
+     "firstName": "example first name",<br>
+     "lastName": "example last name",<br>
+     "position": "example position"<br>
 }
 
 ## Operability
