@@ -11,7 +11,6 @@ import (
 func main() {
 	// init router
 	r := mux.NewRouter()
-
 	//routes
 	r.HandleFunc("/api/employees", employee.GetEmployees).Methods("Get")
 	r.HandleFunc("/api/employees/{id}", employee.GetEmployee).Methods("Get")
